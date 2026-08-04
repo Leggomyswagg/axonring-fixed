@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AxonRing — NFC Smart Ring | Honest. Passive. No Battery Ever.</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --text: #f5f5f5;
+      --muted: #a0a0a0;
+      --accent: #c9a227;
+      --border: #2a2a2a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 28px; font-size: 0.95rem; }
+    nav a:hover { color: var(--text); }
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 36px;
+    }
+    .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .btn-primary { background: var(--accent); color: #111; }
+    .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 40px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .section { padding: 60px 0; }
+    .section h2 {
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .section .sub { color: var(--muted); margin-bottom: 40px; max-width: 560px; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+    .doesnt {
+      background: #1f1515;
+      border: 1px solid #3a2222;
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 40px;
+    }
+    .doesnt h3 { color: #e07070; margin-bottom: 16px; }
+    .doesnt ul { list-style: none; }
+    .doesnt li {
+      padding: 8px 0;
+      color: var(--muted);
+      border-bottom: 1px solid #2a1a1a;
+    }
+    .doesnt li:last-child { border-bottom: none; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+    .product {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+    .product .price { font-size: 2rem; font-weight: 700; margin: 16px 0; }
+    .product .price span { font-size: 1rem; color: var(--muted); font-weight: 400; }
+    .product ul { text-align: left; list-style: none; margin: 24px 0; color: var(--muted); font-size: 0.95rem; }
+    .product li { padding: 6px 0; }
+    .product li::before { content: "\2713 "; color: var(--accent); }
+    .specs table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+    .specs th, .specs td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .specs th { color: var(--muted); font-weight: 500; width: 40%; }
+    .faq details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      padding: 16px 20px;
+    }
+    .faq summary { cursor: pointer; font-weight: 600; }
+    .faq p { margin-top: 12px; color: var(--muted); font-size: 0.95rem; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .note {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 24px 28px;
+      margin: 40px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .note p { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="logo">Axon<span>Ring</span></div>
+    <nav>
+      <a href="#what">What it does</a>
+      <a href="#products">Shop</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero container">
+    <h1>Your World,<br>One Tap Away</h1>
+    <p>A passive NFC ring you wear like jewellery. Share your contact, open any link, or trigger phone automations — with no battery, ever.</p>
+    <div class="cta-row">
+      <a href="#products" class="btn btn-primary">Shop the Collection</a>
+      <a href="#sizing" class="btn btn-secondary">Free Sizing Kit</a>
+    </div>
+  </section>
+
+  <div class="trust-bar container">
+    <span>No Battery Ever</span>
+    <span>Water Resistant</span>
+    <span>iPhone & Android</span>
+    <span>30-Day Returns</span>
+    <span>Free Worldwide Shipping</span>
+  </div>
+
+  <section class="section container" id="what">
+    <h2>What It Does</h2>
+    <p class="sub">Everything listed here works with a simple passive NFC chip. No apps required on the receiving phone.</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Digital Business Card</h3>
+        <p>Tap any NFC phone. Your name, number, email and socials appear instantly. No app needed on their side.</p>
+      </div>
+      <div class="card">
+        <h3>Link Sharing</h3>
+        <p>Store any URL — LinkedIn, portfolio, menu, payment link. One tap opens it on the other phone.</p>
+      </div>
+      <div class="card">
+        <h3>Phone Automations</h3>
+        <p>Trigger iOS Shortcuts or Android routines: silence phone, start timer, open app, run a scene.</p>
+      </div>
+      <div class="card">
+        <h3>Access & Scenes</h3>
+        <p>Enroll in compatible door systems or trigger smart-home routines through your phone’s automation apps.</p>
+      </div>
+    </div>
+
+    <div class="doesnt">
+      <h3>What It Does Not Do</h3>
+      <ul>
+        <li>Make contactless payments at Visa / Mastercard / Apple Pay terminals (no secure payment chip)</li>
+        <li>Track heart rate, SpO2, sleep, stress, ECG or blood pressure</li>
+        <li>Have a battery, screen, sensors or GPS</li>
+        <li>Act as a hardware security key</li>
+      </ul>
+      <p style="margin-top:16px;color:#a08080;font-size:0.9rem;">Any passive NFC ring claiming otherwise is overpromising. Those features require a different, battery-powered category of product.</p>
+    </div>
+  </section>
+
+  <section class="section container" id="products">
+    <h2>Choose Your AxonRing</h2>
+    <p class="sub">One-time purchase. No subscription. Free sizing kit ships first so the fit is perfect.</p>
+    <div class="products">
+      <div class="product">
+        <h3>Executive</h3>
+        <p style="color:var(--muted)">Matte black ceramic · Everyday profile</p>
+        <div class="price">$249 <span>one-time</span></div>
+        <ul>
+          <li>Digital business card & link sharing</li>
+          <li>Phone automation triggers</li>
+          <li>Rewritable anytime</li>
+          <li>Waterproof · No battery ever</li>
+          <li>Free sizing kit</li>
+          <li>1-year warranty · Free shipping</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Buy Executive</a>
+      </div>
+      <div class="product" style="border-color:var(--accent)">
+        <h3>Prestige</h3>
+        <p style="color:var(--muted)">Polished ceramic · Gold detailing</p>
+        <div class="price">$349 <span>one-time</span></div>
+        <ul>
+          <li>Everything in Executive</li>
+          <li>Polished finish with gold accent</li>
+          <li>Premium gift presentation</li>
+          <li>Priority email support</li>
+          <li>Free sizing kit</li>
+          <li>2-year extended warranty</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Buy Prestige</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" id="specs">
+    <h2>Built to Last</h2>
+    <p class="sub">Sealed ceramic. Passive NFC chip. Nothing to charge, nothing to break.</p>
+    <div class="specs">
+      <table>
+        <tr><th>Chip</th><td>NTAG (ISO 14443)</td></tr>
+        <tr><th>Power</th><td>Passive — never charges</td></tr>
+        <tr><th>Material</th><td>Sealed ceramic / hypoallergenic composite</td></tr>
+        <tr><th>Water resistance</th><td>Showers, swimming, daily wear</td></tr>
+        <tr><th>Sizes</th><td>US 6–13</td></tr>
+        <tr><th>Compatibility</th><td>iPhone 7+ · NFC Android phones</td></tr>
+        <tr><th>Setup</th><td>~5 minutes with free NFC app</td></tr>
+        <tr><th>Warranty</th><td>1 year (Executive) / 2 years (Prestige)</td></tr>
+        <tr><th>Returns</th><td>30 days, full refund</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section container" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Can it make contactless payments at terminals?</summary>
+        <p>No. AxonRing has no secure payment chip, so it cannot pay at card terminals. You can store a payment link (PayPal.me, Venmo, Cash App) that opens on the other person’s phone when they tap your ring.</p>
+      </details>
+      <details>
+        <summary>Does it track health metrics (heart rate, sleep, etc.)?</summary>
+        <p>No. This is a passive NFC ring. Continuous health tracking requires batteries and sensors — a completely different product category. We do not claim those features.</p>
+      </details>
+      <details>
+        <summary>Does it need charging?</summary>
+        <p>Never. The chip is passive and draws power only when a phone reads it. There is no battery to die or replace.</p>
+      </details>
+      <details>
+        <summary>How do I set it up?</summary>
+        <p>About five minutes. Use a free NFC writing app (NFC Tools works on both iOS and Android). A step-by-step guide is included in every box. You can rewrite the ring anytime.</p>
+      </details>
+      <details>
+        <summary>What about sizing?</summary>
+        <p>We ship a free physical sizing kit first. Confirm your exact size, then the ring is made and shipped. US sizes 6–13.</p>
+      </details>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="note">
+      <strong style="color:var(--text)">A note from the team</strong>
+      <p style="margin-top:10px">AxonRing is a new brand. We would rather tell you exactly what the ring does — and what it doesn’t — than invent reviews or overpromise features. Every claim on this page is accurate. Try it risk-free for 30 days.</p>
+    </div>
+  </div>
+
+  <footer class="container">
+    <p>AxonRing — Honest NFC technology. No battery. No overclaims.</p>
+    <p style="margin-top:8px">30-day returns · Free shipping · Secure checkout</p>
+  </footer>
+</body>
+</html>
