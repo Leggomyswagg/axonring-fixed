@@ -15,7 +15,6 @@ Honest passive NFC positioning, rewritten copy, policies, and ready-to-deploy HT
 
 ```
 .
-├── AxonRing_Fixed_Strategy.md          ← Full strategy & diagnosis
 ├── axonring-fixed-landing.html         ← Standalone fixed landing page
 └── axonring-fixed/
     ├── README.md
