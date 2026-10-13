@@ -35,3 +35,11 @@ Honest passive NFC positioning, rewritten copy, policies, and ready-to-deploy HT
 ## Result
 
 Credible, physics-consistent claims. Clear differentiation from Oura / Ultrahuman / RingConn. Lower return risk. Ready for live deployment.
+
+## Ordering status
+
+Collection buttons now open the corresponding product pages, and the standalone
+landing page links to the sizing guide. Product pages prepare an order inquiry to
+`support@axonring.com`; the visitor sends it from their email app. No payment or
+order is submitted by these pages. A checkout provider and verified product/price
+links are still required before direct purchasing can be enabled.
